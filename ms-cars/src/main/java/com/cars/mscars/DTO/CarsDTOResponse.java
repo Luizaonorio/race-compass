@@ -1,20 +1,19 @@
 package com.cars.mscars.DTO;
 
 import com.cars.mscars.Model.Pilot;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CarDTOResponse {
+public class CarsDTOResponse {
 
-    private Long id;
+    private String id;
     private String brand;
     private String model;
+
     private Pilot pilot;
     private int year;
 }

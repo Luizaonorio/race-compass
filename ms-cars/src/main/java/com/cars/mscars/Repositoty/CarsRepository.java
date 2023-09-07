@@ -1,4 +1,10 @@
-package com.cars.mscars;
+package com.cars.mscars.Repositoty;
 
-public class CarsRepository {
+
+import com.cars.mscars.Entity.Cars;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+
+public interface CarsRepository extends MongoRepository<Cars, String> {
+
 }
