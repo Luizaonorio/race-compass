@@ -1,4 +1,4 @@
-package com.cars.mscars.Service.Exceptions;
+package com.cars.mscars.Service.Exceptions.Error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,5 +12,4 @@ public class ErrorResponse {
     private Integer statusCode;
     private LocalDateTime timestamp;
     private String message;
-
 }
