@@ -1,4 +1,4 @@
-package com.cars.mscars.Service.Exceptions.Error;
+package com.races.msraces.Domain.Track.Service.Exceptions.Error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,5 +9,4 @@ public class ValidationError {
 
     private final String message;
     private final String field;
-
 }
