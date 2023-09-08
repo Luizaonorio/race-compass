@@ -7,5 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TrackResponse {
+public class TrackDTOResponse {
+
+    private String id;
+    private String name;
+    private  String country;
 }

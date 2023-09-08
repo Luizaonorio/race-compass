@@ -1,4 +1,4 @@
-package com.cars.mscars.Config;
+package com.races.msraces.Config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
