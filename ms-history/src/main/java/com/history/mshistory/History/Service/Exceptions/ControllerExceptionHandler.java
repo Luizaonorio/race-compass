@@ -1,9 +1,8 @@
 package com.history.mshistory.History.Service.Exceptions;
 
-import com.races.msraces.Domain.Race.Service.Exceptions.Error.ErrorResponse;
-import com.races.msraces.Domain.Race.Service.Exceptions.Error.ValidationError;
-import com.races.msraces.Domain.Race.Service.Exceptions.Error.ValidationErrorResponse;
-import com.races.msraces.Domain.Track.Service.Exceptions.TrackNotFoundException;
+import com.history.mshistory.History.Service.Exceptions.Error.ErrorResponse;
+import com.history.mshistory.History.Service.Exceptions.Error.ValidationError;
+import com.history.mshistory.History.Service.Exceptions.Error.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -42,17 +41,8 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(RaceNotFoundException.class)
-    public ResponseEntity<ErrorResponse> raceNotFoundException(RaceNotFoundException ex) {
-        ErrorResponse message = new ErrorResponse(
-                HttpStatus.NOT_FOUND.value(),
-                LocalDateTime.now(),
-                ex.getMessage());
-        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(TrackNotFoundException.class)
-    public ResponseEntity<ErrorResponse> trackNotFoundException(TrackNotFoundException ex) {
+    @ExceptionHandler(HistoryNotFoundException.class)
+    public ResponseEntity<ErrorResponse> historyNotFoundException(HistoryNotFoundException ex) {
         ErrorResponse message = new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now(),
