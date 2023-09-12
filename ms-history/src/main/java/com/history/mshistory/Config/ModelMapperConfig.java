@@ -1,4 +1,4 @@
-package com.races.msraces.Config;
+package com.history.mshistory.Config;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

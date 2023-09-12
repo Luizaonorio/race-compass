@@ -1,69 +1,43 @@
 package com.history.mshistory.History.Service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.races.msraces.Domain.AggregationRanceAndTrack;
-import com.races.msraces.Domain.Race.Cars;
-import com.races.msraces.Domain.Race.DTO.RaceDTORequest;
-import com.races.msraces.Domain.Race.DTO.RaceDTOResponse;
-import com.races.msraces.Domain.Race.Entity.Race;
-import com.races.msraces.Domain.Race.Repository.RaceRepository;
-import com.races.msraces.Domain.Race.Service.Exceptions.RaceNotFoundException;
-import com.races.msraces.Domain.Race.Service.Validation.ValidRace;
-import com.races.msraces.Domain.Track.Entity.Track;
-import com.races.msraces.Model.CarsConversion;
-import com.races.msraces.RabbitMQ.RabbitMQMessageProducer;
+import com.history.mshistory.History.DTO.HistoryDTOResponse;
+import com.history.mshistory.History.Entity.History;
+import com.history.mshistory.History.Repository.HistoryRepository;
+import com.history.mshistory.History.Service.Exceptions.HistoryNotFoundException;
+import com.history.mshistory.Model.RaceConversion;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
-public class RaceService {
+public class HistoryService {
 
     @Autowired
-    private RaceRepository raceRepository;
-
-    @Autowired
-    private Cars cars;
-
-    @Autowired
-    private AggregationRanceAndTrack aggregationRanceAndTrack;
+    private HistoryRepository historyRepository;
 
     @Autowired
     private ModelMapper mapper;
 
-    private final RabbitMQMessageProducer messageProducer;
-
-
-    public RaceDTOResponse findRaceById(String id) {
-        Race raceEntity = raceRepository.findById(id).orElseThrow(() -> new RaceNotFoundException(id));
-        RaceDTOResponse raceResponse = mapper.map(raceEntity, RaceDTOResponse.class);
-        return raceResponse;
+    public HistoryDTOResponse findHistoryById(String id) {
+        History historyEntity = historyRepository.findById(id).orElseThrow(() -> new HistoryNotFoundException(id));
+        HistoryDTOResponse historyResponse = mapper.map(historyEntity, HistoryDTOResponse.class);
+        return historyResponse;
     }
 
-    public List<RaceDTOResponse> findAllRaces() {
-        List<Race> raceListEntity = raceRepository.findAll();
-        List<RaceDTOResponse> racesListResponse = raceListEntity.stream().map(race -> mapper.map(race, RaceDTOResponse.class)).toList();
-        return racesListResponse;
+    public List<HistoryDTOResponse> findAllHistories() {
+        List<History> historyListEntity = historyRepository.findAll();
+        List<HistoryDTOResponse> historyListResponse = historyListEntity.stream().map(history -> mapper.map(history, HistoryDTOResponse.class)).toList();
+        return historyListResponse;
     }
 
-    public RaceDTOResponse createRace(RaceDTORequest raceDTORequest) throws JsonProcessingException {
-        Track track = aggregationRanceAndTrack.existingTrackOnDB(raceDTORequest.getTrack());
-        Race raceConversion = mapper.map(raceDTORequest, Race.class);
-        raceConversion.setTrack(track);
-
-        List<CarsConversion> positionListCars = ValidRace.RunTheRace(cars.rafflingOffCars());
-        raceConversion.setCarsList(positionListCars);
-
-        messageProducer.publish(raceConversion);
-
-        Race raceSaveEntity = raceRepository.save(raceConversion);
-        RaceDTOResponse raceResponse = mapper.map(raceSaveEntity, RaceDTOResponse.class);
-        return raceResponse;
+    public void saveRaceResultOnDB(RaceConversion raceResult) {
+        History newHistory = mapper.map(raceResult, History.class);
+        newHistory.setDate(new Date());
+        historyRepository.save(newHistory);
     }
 }
