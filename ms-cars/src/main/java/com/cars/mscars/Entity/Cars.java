@@ -1,9 +1,12 @@
 package com.cars.mscars.Entity;
 
 import com.cars.mscars.Model.Pilot;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
 
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -18,5 +21,6 @@ public class Cars {
     private String brand;
     private String model;
     private Pilot pilot;
-    private int year;
+    @JsonFormat(pattern = "yyyy")
+    private Date year;
 }

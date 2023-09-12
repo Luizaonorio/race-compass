@@ -1,13 +1,15 @@
 package com.cars.mscars.DTO;
 
 import com.cars.mscars.Model.Pilot;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @EqualsAndHashCode
 @NoArgsConstructor
@@ -24,6 +26,6 @@ public class CarsDTORequest {
     @Valid
     private Pilot pilot;
 
-    @NotNull
-    private int year;
+    @JsonFormat(pattern = "yyyy")
+    private Date year;
 }
