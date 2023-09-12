@@ -1,8 +1,9 @@
-package com.races.msraces.Domain.Track.Service.Exceptions;
+package com.races.msraces.Domain.Race.Service.Exceptions;
 
-import com.races.msraces.Domain.Track.Service.Exceptions.Error.ErrorResponse;
-import com.races.msraces.Domain.Track.Service.Exceptions.Error.ValidationError;
-import com.races.msraces.Domain.Track.Service.Exceptions.Error.ValidationErrorResponse;
+import com.races.msraces.Domain.Race.Service.Exceptions.Error.ErrorResponse;
+import com.races.msraces.Domain.Race.Service.Exceptions.Error.ValidationError;
+import com.races.msraces.Domain.Race.Service.Exceptions.Error.ValidationErrorResponse;
+import com.races.msraces.Domain.Track.Service.Exceptions.TrackNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -39,6 +40,15 @@ public class ControllerExceptionHandler {
                 validationErrors);
 
         return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RaceNotFoundException.class)
+    public ResponseEntity<ErrorResponse> raceNotFoundException(RaceNotFoundException ex) {
+        ErrorResponse message = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                LocalDateTime.now(),
+                ex.getMessage());
+        return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(TrackNotFoundException.class)
