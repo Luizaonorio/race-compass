@@ -2,20 +2,24 @@ package com.history.mshistory.RabbitMQ;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.history.mshistory.History.Service.HistoryService;
+import com.history.mshistory.Model.RaceConversion;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.context.annotation.Configuration;
 
-@Component
+@EnableRabbit
+@Configuration
 @RequiredArgsConstructor
 public class RabbitMQMessageConsumer {
 
-    private final RabbitTemplate rabbitTemplate;
-    private final Queue queueRaceFinishResult;
+    private final HistoryService historyService;
+    private final ObjectMapper objectMapper;
 
-    private String convertOnJson(Object response) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(response);
+    @RabbitListener(queues = "RACE-RESULT")
+    private void receivesAndConsumesRaceResults(String raceResult) throws JsonProcessingException {
+        RaceConversion race = objectMapper.readValue(raceResult, RaceConversion.class);
+        historyService.saveRaceResultOnDB(race);
     }
 }
