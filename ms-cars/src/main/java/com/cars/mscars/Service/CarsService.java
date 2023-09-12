@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -20,6 +21,8 @@ public class CarsService {
 
     @Autowired
     private ModelMapper mapper;
+
+    private int CARMAXSIZE = 10;
 
     public CarsDTOResponse findCarById(String id) {
         Cars carEntity = carsRepository.findById(id).orElseThrow(() -> new CarNotFoundException(id));
@@ -59,6 +62,13 @@ public class CarsService {
         carsRepository.deleteById(id);
         String carDeletedResponse = "Car deleted! With id: " + id;
         return carDeletedResponse;
+    }
+
+    public List<CarsDTOResponse> rafflingOffCars() {
+        List<Cars> carsList = getCarsListOnDB();
+        Collections.shuffle(carsList);
+        List<CarsDTOResponse> carsListResponse = carsList.stream().limit(CARMAXSIZE).map(car -> mapper.map(car, CarsDTOResponse.class)).toList();
+        return carsListResponse;
     }
 
     public List<Cars> getCarsListOnDB() {
