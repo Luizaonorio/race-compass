@@ -14,7 +14,7 @@ public class ValidCar {
         for (Cars car : carsOnDB) {
             if (car.getBrand().equals(carRequest.getBrand())
                     && car.getModel().equals(carRequest.getModel())
-                    && car.getYear() == carRequest.getYear()) {
+                    && car.getYear().equals(carRequest.getYear())) {
                 throw new AlreadyRegisteredException("Car");
             }
             if (car.getPilot().equals(carRequest.getPilot())) {
