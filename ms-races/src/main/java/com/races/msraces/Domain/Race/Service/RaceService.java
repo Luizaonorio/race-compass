@@ -60,10 +60,9 @@ public class RaceService {
         List<CarsConversion> positionListCars = ValidRace.RunTheRace(cars.rafflingOffCars());
         raceConversion.setCarsList(positionListCars);
 
-        messageProducer.publish(raceConversion);
-
         Race raceSaveEntity = raceRepository.save(raceConversion);
         RaceDTOResponse raceResponse = mapper.map(raceSaveEntity, RaceDTOResponse.class);
+        messageProducer.publish(raceConversion);
         return raceResponse;
     }
 }

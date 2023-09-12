@@ -1,0 +1,18 @@
+server:
+  port: 8089
+
+rabbitmq:
+  host: localhost
+  port: ${RABBITMQ_PORT:5672}
+  username: ${RABBITMQ_DEFAULT_USER:guest}
+  password: ${RABBITMQ_DEFAULT_PASS:guest}
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27019
+      database: db_ms-history
+      username: root
+      password: root
+      authentication-database: admin

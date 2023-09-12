@@ -1,6 +1,5 @@
 version: "3.8"
 
-
 services:
 
   rabbitmq:
@@ -14,12 +13,12 @@ services:
       - "${RABBITMQ_PORT:-5672}:5672"
       - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
 
-  ms-race:
+  ms-history:
     image: mongo:latest
-    container_name: ms-race
+    container_name: ms-history
     environment:
-      - MONGO_INITDB_DATABASE=db_ms-race
+      - MONGO_INITDB_DATABASE=db_ms-history
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
     ports:
-      - 27017:27017
+      - 27019:27017
