@@ -1,6 +1,12 @@
 server:
   port: 8090
 
+rabbitmq:
+  host: localhost
+  port: ${RABBITMQ_PORT:5672}
+  username: ${RABBITMQ_DEFAULT_USER:guest}
+  password: ${RABBITMQ_DEFAULT_PASS:guest}
+
 spring:
   data:
     mongodb:
