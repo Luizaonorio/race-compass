@@ -1,7 +1,5 @@
-package com.cars.mscars.Model;
+package com.races.msraces.Model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pilot {
+public class PilotConversion {
 
-    @NotBlank
     private String name;
-
-    @NotNull
     private int age;
 }

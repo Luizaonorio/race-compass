@@ -1,19 +1,23 @@
-package com.cars.mscars.DTO;
+package com.races.msraces.Model;
 
-import com.cars.mscars.Model.Pilot;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+
+import java.util.Date;
 
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class CarsDTOResponse {
+public class CarsConversion {
 
     private String id;
+    private int position;
     private String brand;
     private String model;
-
-    private Pilot pilot;
-    private int year;
+    private PilotConversion pilot;
+    private int velocity;
+    @JsonFormat(pattern = "yyyy")
+    private Date year;
 }
