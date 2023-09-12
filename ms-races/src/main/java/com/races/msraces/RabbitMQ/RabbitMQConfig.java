@@ -1,4 +1,4 @@
-package com.cars.mscars.RabbitMQ;
+package com.races.msraces.RabbitMQ;
 
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.Queue;

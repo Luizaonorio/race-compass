@@ -1,11 +1,13 @@
-package com.cars.mscars.RabbitMQ;
+package com.races.msraces.RabbitMQ;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class RabbitMQMessageProducer {
 
@@ -19,6 +21,6 @@ public class RabbitMQMessageProducer {
 
     public void publish(Object response) throws JsonProcessingException {
         var convertJson = convertOnJson(response);
-        rabbitTemplate.convertAndSend(queueRaceFinishResult.toString(), convertJson);
+        rabbitTemplate.convertAndSend(queueRaceFinishResult.getName(), convertJson);
     }
 }
