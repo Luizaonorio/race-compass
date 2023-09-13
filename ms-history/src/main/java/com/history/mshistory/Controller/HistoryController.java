@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@ToString
 @RestController
 @RequestMapping(value = "api/v1/histories")
 public class HistoryController {

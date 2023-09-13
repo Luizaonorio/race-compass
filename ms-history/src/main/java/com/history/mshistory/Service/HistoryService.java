@@ -7,7 +7,6 @@ import com.history.mshistory.History.Service.Exceptions.HistoryNotFoundException
 import com.history.mshistory.Model.RaceConversion;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,11 +16,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class HistoryService {
 
-    @Autowired
-    private HistoryRepository historyRepository;
+    private final HistoryRepository historyRepository;
 
-    @Autowired
-    private ModelMapper mapper;
+    private final ModelMapper mapper;
 
     public HistoryDTOResponse findHistoryById(String id) {
         History historyEntity = historyRepository.findById(id).orElseThrow(() -> new HistoryNotFoundException(id));
@@ -36,8 +33,10 @@ public class HistoryService {
     }
 
     public void saveRaceResultOnDB(RaceConversion raceResult) {
-        History newHistory = mapper.map(raceResult, History.class);
+        History newHistory = new History();
         newHistory.setDate(new Date());
+        newHistory.setRace(raceResult);
+
         historyRepository.save(newHistory);
     }
 }

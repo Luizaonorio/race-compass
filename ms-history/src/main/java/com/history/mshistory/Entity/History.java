@@ -1,6 +1,7 @@
 package com.history.mshistory.History.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.history.mshistory.Model.RaceConversion;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -19,6 +20,7 @@ public class History {
 
     @Id
     private String id;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private RaceConversion race;
 }
