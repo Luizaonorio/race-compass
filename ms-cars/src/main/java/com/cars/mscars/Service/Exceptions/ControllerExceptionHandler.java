@@ -31,7 +31,7 @@ public class ControllerExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(fieldError -> new ValidationError(fieldError.getDefaultMessage(), fieldError.getField()))
-                .collect(Collectors.toList());
+                .toList();
 
         ValidationErrorResponse message = new ValidationErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),

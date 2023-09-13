@@ -1,11 +1,19 @@
 server:
   port: 8088
+  socketOptions:
+    keepAlive: 100,
+    connectTimeoutMS: 40000
+
 
 spring:
+
+  application:
+    name: ms-cars
+
   data:
     mongodb:
       host: localhost
-      port: 27017
+      port: 27018
       database: db_ms-cars
       username: root
       password: root

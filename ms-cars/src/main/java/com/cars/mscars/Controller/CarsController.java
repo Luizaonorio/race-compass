@@ -42,4 +42,9 @@ public class CarsController {
     public ResponseEntity deleteById(@PathVariable String id) {
         return new ResponseEntity<>(carsService.deleteCarById(id), HttpStatus.OK);
     }
+
+    @GetMapping(value = "/sortedCars")
+    public ResponseEntity<List<CarsDTOResponse>> rafflingOffCars() {
+        return new ResponseEntity<>(carsService.rafflingOffCars(), HttpStatus.OK);
+    }
 }
