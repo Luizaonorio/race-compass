@@ -1,8 +1,7 @@
-package com.history.mshistory.History.Controller;
+package com.history.mshistory.Controller;
 
-import com.history.mshistory.History.DTO.HistoryDTOResponse;
-import com.history.mshistory.History.Service.HistoryService;
-import lombok.ToString;
+import com.history.mshistory.DTO.HistoryDTOResponse;
+import com.history.mshistory.Service.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

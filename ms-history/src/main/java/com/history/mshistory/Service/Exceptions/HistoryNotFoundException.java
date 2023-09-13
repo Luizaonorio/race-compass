@@ -1,4 +1,4 @@
-package com.history.mshistory.History.Service.Exceptions;
+package com.history.mshistory.Service.Exceptions;
 
 public class HistoryNotFoundException extends RuntimeException {
     public HistoryNotFoundException(String id) {

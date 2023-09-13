@@ -1,9 +1,9 @@
-package com.history.mshistory.History.Service;
+package com.history.mshistory.Service;
 
-import com.history.mshistory.History.DTO.HistoryDTOResponse;
-import com.history.mshistory.History.Entity.History;
-import com.history.mshistory.History.Repository.HistoryRepository;
-import com.history.mshistory.History.Service.Exceptions.HistoryNotFoundException;
+import com.history.mshistory.DTO.HistoryDTOResponse;
+import com.history.mshistory.Entity.History;
+import com.history.mshistory.Repository.HistoryRepository;
+import com.history.mshistory.Service.Exceptions.HistoryNotFoundException;
 import com.history.mshistory.Model.RaceConversion;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

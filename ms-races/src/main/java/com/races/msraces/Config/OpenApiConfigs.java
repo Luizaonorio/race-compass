@@ -1,4 +1,4 @@
-package com.history.mshistory.Config;
+package com.races.msraces.Config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -16,13 +16,12 @@ public class OpenApiConfigs {
 
     @Bean
     public OpenAPI customOpenAPI(
-            @Value("MS-History") String serviceTitle,
+            @Value("MS-Races") String serviceTitle,
             @Value("v1") String serviceVersion,
-            @Value("http://localhost:8089") String url) {
+            @Value("http://localhost:8090") String url) {
         return new OpenAPI()
                 .servers(List.of(new Server().url(url)))
                 .info(new Info().title(serviceTitle).version(serviceVersion));
     }
-
 }
 

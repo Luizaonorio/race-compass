@@ -1,6 +1,6 @@
-package com.history.mshistory.History.Repository;
+package com.history.mshistory.Repository;
 
-import com.history.mshistory.History.Entity.History;
+import com.history.mshistory.Entity.History;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface HistoryRepository extends MongoRepository<History, String> {

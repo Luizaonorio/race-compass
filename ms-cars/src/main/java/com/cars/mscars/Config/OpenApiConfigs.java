@@ -1,5 +1,6 @@
 package com.cars.mscars.Config;
 
+
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -16,9 +17,9 @@ public class OpenApiConfigs {
 
     @Bean
     public OpenAPI customOpenAPI(
-            @Value("${openapi.service.title}") String serviceTitle,
-            @Value("${openapi.service.version}") String serviceVersion,
-            @Value("${openapi.service.url}") String url) {
+            @Value("MS-History") String serviceTitle,
+            @Value("v1") String serviceVersion,
+            @Value("http://localhost:8090") String url) {
         return new OpenAPI()
                 .servers(List.of(new Server().url(url)))
                 .info(new Info().title(serviceTitle).version(serviceVersion));

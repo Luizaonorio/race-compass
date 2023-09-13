@@ -98,4 +98,17 @@ public class CarsControllerTest {
         mockMvc.perform(delete("/api/v1/cars/delete/{id}", ID_CAR))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    void rafflingOffCars() throws Exception {
+        CarsDTOResponse carsDTOResponse = JsonUtils.getObjectFromFile(CARS, CarsDTOResponse.class);
+
+        when(carsService.rafflingOffCars()).thenReturn(List.of(carsDTOResponse));
+
+        mockMvc.perform(get("/api/v1/cars/sortedCars"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(objectMapper.writeValueAsString(List.of(carsDTOResponse))));
+
+        verify(carsService, times(1)).rafflingOffCars();
+    }
 }

@@ -1,4 +1,4 @@
-package com.history.mshistory.History.DTO;
+package com.history.mshistory.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.history.mshistory.Model.RaceConversion;

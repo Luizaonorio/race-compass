@@ -1,8 +1,8 @@
-package com.history.mshistory.History.Service.Exceptions;
+package com.history.mshistory.Service.Exceptions;
 
-import com.history.mshistory.History.Service.Exceptions.Error.ErrorResponse;
-import com.history.mshistory.History.Service.Exceptions.Error.ValidationError;
-import com.history.mshistory.History.Service.Exceptions.Error.ValidationErrorResponse;
+import com.history.mshistory.Service.Exceptions.Error.ErrorResponse;
+import com.history.mshistory.Service.Exceptions.Error.ValidationError;
+import com.history.mshistory.Service.Exceptions.Error.ValidationErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

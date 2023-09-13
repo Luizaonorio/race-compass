@@ -1,4 +1,4 @@
-package com.history.mshistory.History.Service.Exceptions.Error;
+package com.history.mshistory.Service.Exceptions.Error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

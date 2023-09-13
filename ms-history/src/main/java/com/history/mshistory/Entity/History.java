@@ -1,4 +1,4 @@
-package com.history.mshistory.History.Entity;
+package com.history.mshistory.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
