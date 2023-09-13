@@ -11,18 +11,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> carNotFoundException(Exception ex) {
+    public ResponseEntity<ErrorResponse> globalExceptionHandler(Exception ex) {
         ErrorResponse message = new ErrorResponse(
-                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 LocalDateTime.now(),
                 ex.getMessage());
-        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -51,8 +50,17 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(message, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(AlreadyRegisteredException.class)
-    public ResponseEntity<ErrorResponse> AlreadyRegisteredException(AlreadyRegisteredException ex) {
+    @ExceptionHandler(AlreadyRegisteredExceptionCar.class)
+    public ResponseEntity<ErrorResponse> alreadyRegisteredExceptionCar(AlreadyRegisteredExceptionCar ex) {
+        ErrorResponse message = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now(),
+                ex.getMessage());
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AlreadyRegisteredExceptionPilot.class)
+    public ResponseEntity<ErrorResponse> alreadyRegisteredExceptionPilot(AlreadyRegisteredExceptionPilot ex) {
         ErrorResponse message = new ErrorResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now(),

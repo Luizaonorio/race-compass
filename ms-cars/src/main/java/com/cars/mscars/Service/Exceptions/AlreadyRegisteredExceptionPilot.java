@@ -1,4 +1,4 @@
-package com.cars.mscars.Service.Exceptions.Error;
+package com.cars.mscars.Service.Exceptions;
 
 public class AlreadyRegisteredExceptionPilot extends RuntimeException {
     public AlreadyRegisteredExceptionPilot() {
