@@ -50,7 +50,7 @@ public class CarsService {
         cars.setBrand(carsDTORequest.getBrand());
         cars.setModel(carsDTORequest.getModel());
         cars.setYear(carsDTORequest.getYear());
-        cars.setPilot(cars.getPilot());
+        cars.setPilot(carsDTORequest.getPilot());
 
         carsRepository.save(cars);
         CarsDTOResponse carResponse = mapper.map(cars, CarsDTOResponse.class);

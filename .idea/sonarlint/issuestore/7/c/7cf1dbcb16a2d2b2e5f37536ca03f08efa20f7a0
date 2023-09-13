@@ -1,0 +1,19 @@
+
+€
+java:S1488"cImmediately return this expression instead of assigning it to the temporary variable "carResponse".(€áŽ§8¬•Ýº¨1
+„
+java:S1488#"hImmediately return this expression instead of assigning it to the temporary variable "carslistResponse".(ó¿¥8¬•Ýº¨1
+€
+java:S1488+"cImmediately return this expression instead of assigning it to the temporary variable "carResponse".(ÎØ÷¶8¬•Ýº¨1
+€
+java:S14888"cImmediately return this expression instead of assigning it to the temporary variable "carResponse".(‡˜Ÿ 8¬•Ýº¨1
+Œ
+java:S1488?"jImmediately return this expression instead of assigning it to the temporary variable "carDeletedResponse".(ÕÐÿãúÿÿÿÿ8­•Ýº¨1
+Š
+java:S1488F"hImmediately return this expression instead of assigning it to the temporary variable "carsListResponse".(Îóš¨ùÿÿÿÿ8­•Ýº¨1
+ˆ
+java:S1488K"fImmediately return this expression instead of assigning it to the temporary variable "carsListEntity".(˜÷óÎúÿÿÿÿ8´¶â¶¨1
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ø¡r8¶¶â¶¨1
+v	java:S116"URename this field "CARMAXSIZE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÄ¬Ûúÿÿÿÿ8Ç•Ýº¨1
+K
+java:S2201="/The return value of "orElseThrow" must be used.(ìô•8Õ•Ýº¨1

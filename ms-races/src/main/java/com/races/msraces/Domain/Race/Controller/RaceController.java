@@ -24,7 +24,7 @@ public class RaceController {
         return new ResponseEntity<>(raceService.findRaceById(id), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/get/races")
+    @GetMapping(value = "/get")
     public ResponseEntity<List<RaceDTOResponse>> findAll() {
         return new ResponseEntity<>(raceService.findAllRaces(), HttpStatus.OK);
     }

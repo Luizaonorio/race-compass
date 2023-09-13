@@ -123,4 +123,17 @@ class CarsServiceTest {
 
         assertThrows(CarNotFoundException.class, () -> carsService.deleteCarById(anyString()));
     }
+
+    @Test
+    void getCarsListOnDB() throws IOException {
+        Cars cars = JsonUtils.getObjectFromFile(CARS, Cars.class);
+        CarsDTOResponse classDTOResponse = JsonUtils.getObjectFromFile(CARS, CarsDTOResponse.class);
+
+        when(carsRepository.findAll()).thenReturn(List.of(cars));
+        List<CarsDTOResponse> response = carsService.rafflingOffCars();
+
+        assertNotNull(response);
+        assertEquals(1, response.size());
+        assertEquals(classDTOResponse, response.get(0));
+    }
 }
