@@ -1,11 +1,10 @@
 # race-compass
 
-O Projeto se trata de uma simulação de corrida utilizando microsserviços com Integrações Específicas (ms-cars, ms-races e ms-history), conectadas por openFeign e menssageria (RabbitMQ).
-
+The project is a race simulation using microservices with Specific Integrations (ms-cars, ms-races, and ms-history), connected by openFeign and messaging (RabbitMQ).
 
 &nbsp;
 
-## Tecnologias Utilizadas:
+## Technologies Used:
 * Java 17
 * Spring Boot 3.1.3
 * MongoDB
@@ -18,48 +17,48 @@ O Projeto se trata de uma simulação de corrida utilizando microsserviços com 
 
 &nbsp;
 
-## Requisitos Para Rodar o Projeto:
-### Instalar em sua maquina local:
-* IDE de sua preferência (indico o Intellij)
+## Requirements to Run the Project:
+### Install on your local machine:
+* IDE of your choice (I recommend IntelliJ)
 * Java 17
 * Docker
 
 &nbsp;
 
-## Rode Localmente:
-```
+## Run Locally:
+```shell
 
 git clone https://github.com/Luizaonorio/race-compass.git
 
 ```
 &nbsp;
 
-## Navegue até o Pasta do Projeto:
-```
+## Navigate to the Project Folder:
+```shell
 
 cd race-compass
 
 ```
 &nbsp;
 
-## Navegue até o Microsserviço:
-```
+## Navigate to the Microservice:
+```shell
 
 cd ms-cars
 
 ```
 &nbsp;
 
-## Rode o docker-compose do Microsserviço:
-```
+## Run the Microservice's Docker Compose:
+```shell
 
 docker-compose up -d
 
 ```
 &nbsp;
 
-## Crie e execute o aplicativo:
-```
+## Create and Run the Application:
+```shell
 
 ./mvnw spring-boot:run
 
@@ -67,10 +66,11 @@ docker-compose up -d
 
 &nbsp;
 
-Entre e siga os demais passos com os ademais microsserviços de ms-races e ms-history, seguindo a ordem.
+##### ! Follow the same steps for the other microservices ms-races and ms-history, starting from "Navigate to the Microservice".
 
+&nbsp;
 
-As APIs podem serem acessadas em: 
+You can access the APIs at:
 
 * http://localhost:8088 (ms-cars)
 * http://localhost:8089 (ms-history)
@@ -79,60 +79,61 @@ As APIs podem serem acessadas em:
 &nbsp;
 
 
-## Regras de Negócio:
+## Business Rules:
 
-Microsserviço ms-cars:
+Microservice ms-cars:
 
-* Não podem existir pilotos totalmente iguais.
-* Deve haver apenas um CRUD.
-* Não podem existir carros totalmente iguais.
+* There cannot be completely identical pilots.
+* There should be only one CRUD.
+* There cannot be completely identical cars.
 
 &nbsp;
 
 
 ms-races:
 
-* Deve consumir o ms-cars para obter no máximo 10 carros.
-* O aplicativo deve selecionar aleatoriamente de 3 a 10 carros.
-* Um carro só pode ultrapassar o carro à sua frente.
-* Deve enviar o resultado da corrida para uma fila RabbitMQ.
+* Must consume ms-cars to get a maximum of 10 cars.
+* The application must randomly select from 3 to 10 cars.
+* A car can only overtake the car in front of it.
+* Must send the race result to a RabbitMQ queue.
   
 
 &nbsp;
 
 ms-history:
 
-* Deve consumir a fila do ms-races e salvar no banco de dados.
-* Deve incluir a data em que o registro foi inserido no banco de dados.
-* Deve fornecer um endpoint para consultar a corrida por ID.
-* Deve fornecer um endpoint para consultar todas as corridas.
+* Must consume the ms-races queue and save it to the database.
+* Must include the date the record was inserted into the database.
+* Must provide an endpoint to query the race by ID.
+* Must provide an endpoint to query all races.
 
 &nbsp;
 
 
 &nbsp;
 
-## Documentação
+## Documentation
 
 
-### Lógica Implementada:
+### Implemented Logic:
 
-Segui a escalada de desenvolvimento pela seguinte ordem: 
+I followed the development progression in the following order:
 
-![image](https://github.com/Luizaonorio/race-compass/assets/102754689/a8a62d25-0b1c-4078-92ad-b2f0c6cacf36)
+![image](https://github.com/Luizaonorio/race-compass/assets/102754689/bb6905dc-104f-467b-b189-118c55406022)
+
 
 
 &nbsp;
 
-Pois, segundo os requisitos, podemos perceber que a dependência que um tem pelo conseguinte. O único que não necessita em nenhuma funcionalidade de outro MS é o ms-cars (por isso o primeiro a ser implementado). Seguindo para ms-races que depende da lista de carros sorteados de cars, e por fim, para ms-history que depende do resultado da corrida ser feito para salva-lá em seu banco. 
+Because, according to the requirements, we can see the dependency that one has on the other. The only one that does not need any functionality from another MS is ms-cars (that's why it was implemented first). Moving on to ms-races, which depends on the list of randomly selected cars from ms-cars, and finally to ms-history, which depends on the race result being generated to save it in its database.
 
-! Todos os microsserviços foram implementados com MongoDB.
+! All microservices were implemented with MongoDB.
 
-### Funcionalidades:
+### Features:
 
 #### MS-CARS
 
-Conta com apenas um CRUD completo. Portanto, foi definido que o objeto piloto deveria estar dentro de Car. Seguindo o exemplo:
+It has only one complete CRUD. Therefore, it was defined that the pilot object should be inside Car. Following the example:
 ```json
 {
         "brand": "String",
@@ -146,13 +147,13 @@ Conta com apenas um CRUD completo. Portanto, foi definido que o objeto piloto de
 ```
 &nbsp;
 
-Também, segue com as solicitações de validação de carro ou piloto já existente.
+It also includes validation requests for existing cars or pilots.
 
 &nbsp;
 
 #### MS-RACES
 
-Este microsserviço conta com duas entidades, a Track que seria o local que a corrida deve acontecer, cujo, deverá ter o seguinte JSON como exemplo:
+This microservice has two entities, Track, which is the location where the race should take place, and should have the following JSON as an example:
 ```json
 {
     "name": "String",
@@ -160,7 +161,7 @@ Este microsserviço conta com duas entidades, a Track que seria o local que a co
 }
 ```
 
-E Race, que deverá conter o seguinte JSON, que informa o nome da corrida, a data que irá ocorrer e o id da Track que será o local, assim como o exemplo:
+And Race, which should contain the following JSON, which informs the name of the race, the date it will take place, and the id of the Track, which will be the location, as in the example:
 ```json
 {
     "name": "Cross Country",
@@ -171,67 +172,68 @@ E Race, que deverá conter o seguinte JSON, que informa o nome da corrida, a dat
 
 &nbsp;
 
-OBS: A funcionalidade de criar e iniciar a corrida são feitas na URL de criar a race, ou seja, após gerar a nova race você também já produz o resultado das posições dos carros. 
+Note: The functionality of creating and starting the race is done in the URL to create the race, meaning that after generating the new race, you also produce the race result.
 
-Segue com as solicitações de envio de resultado da corrida para uma fila RabbitMQ, ultrapassagem de carros e o máximo de carros consumidos.
+Includes requests for sending race results to a RabbitMQ queue, car overtaking, and maximum cars consumed.
 
-Os carros consumidos aleatoriamente são desfrutados do método rafflingOffCars presente em ms-cars e consumido em ms-races po meio do OpenFeign.
+The randomly consumed cars are enjoyed from the rafflingOffCars method present in ms-cars and consumed in ms-races through OpenFeign.
 
 &nbsp;
 
 #### MS-HISTORY
 
-Apresenta apenas metodos de encontrar history por id ou todas as historys já salvas (findById e findAll), já que, ela apenas consumirá os resultados das corridas de ms-races e salvará no seu banco de dados.
+It only includes methods to find history by ID or all saved history (findById and findAll), as it only consumes race results from ms-races and saves them in its database.
 
-Segue a solicitação de incluir data atual em que o registro foi inserido no banco de dados.
+Includes the request to include the current date when the record was inserted into the database.
 
 
 &nbsp;
 
-### Segurança e Qualidade:
+### Security and Quality:
 
-#### Testes contam com cobertura de 63%
-![image](https://github.com/Luizaonorio/race-compass/assets/102754689/a9befece-9696-4438-8bcc-1a7b8868dfad)
+#### Tests have a coverage of 74%
+![image](https://github.com/Luizaonorio/race-compass/assets/102754689/7108bffa-9c93-478f-aa8a-c4f9e9e025dc)
+
 &nbsp;
 
-Ferramenta Coverage foi escolhida para essa análise da pocentagem dos testes.
+The Coverage tool was chosen for this test coverage percentage analysis.
 
-#### Para rodar analise em sua maquina
+#### To Run the Analysis on your Machine
 
 ![image](https://github.com/Luizaonorio/race-compass/assets/102754689/90546f5d-3892-4107-8d75-28a7980c2fda)
-##### Clique no packege de Java sublinhado em amarelo na foto, com o botão direito do seu mouse.
+##### Click on the underlined yellow Java package in the photo with your right mouse button.
 
 &nbsp;
 
 ![image](https://github.com/Luizaonorio/race-compass/assets/102754689/741095a9-7403-4dc3-8ba4-6837e1bdeea5)
-##### Após, procure por "More run/ Debbug" e deixe o mouse sob.
+##### After that, look for "More run/ Debug" and hover your mouse over it.
 
 &nbsp;
 
 ![image](https://github.com/Luizaonorio/race-compass/assets/102754689/c98d4b4f-e94a-46bc-885e-a22b7ede5570)
-##### Por fim, procure e clique em "Run 'All Tests' with Coverage".
+##### Finally, look for and click on "Run 'All Tests' with Coverage".
 
 &nbsp;
 
 &nbsp;
 
-### Estrutura de Código:
-#### A estrutura de branch, segue o seguinte padrão:
-No início do projeto foram utilizadas as branches fixas "main" e "dev", seguindo o padrão para novas features de dev/(microsserviço).
+### Code Structure:
+#### The branch structure follows the following pattern:
+At the beginning of the project, the fixed branches "main" and "dev" were used, following the pattern for new features of dev/(microservice). After the accidental and unintended deletion of the "dev" branch, the branch pattern was changed from "dev" to "develop," and new features were changed to "developed/(microservice)"
 Após a deleção indevida e acidental da branch "dev", o padrão de branches foi alterado de "dev" para "develop" e novas features mudaram para developed/(microsserviço)
 
 
-#### A estrutura de commits, segue o seguinte padrão:
-prefixo(microsserviço): O que foi feito no commit [issue]
+#### The commit structure follows the following pattern:
+prefix(microservice): What was done in the commit [issue]
 
-##### Exemplo:
+##### Example:
 feat(ms-cars): Add CRUD methods [#1]
 
 &nbsp;
 
-### Documentação da API
+### API Documentation
 
-Para a documentação da API a ferramenta Swagger foi utilizada, você pode acessar os microsserviços pelas seguintes URLs:
+Swagger was used for API documentation. You can access the microservices through the following URLs:
 
 &nbsp;
 
@@ -246,14 +248,18 @@ http://localhost:8089/swagger-ui/index.html#/
 
 &nbsp;
 
-## Funcionalidades que serão implementadas futuramente:
+! You can find valid objects for Track, Race, and Cars in "Implemented Logic".
 
-Não foram implementados em razão da carêcia de tempo investido e priorização de outras funcionalidades.
+&nbsp;
 
-* Docker que roda todos os microsserviços juntos.
-* Cobertura de testes superior a 70%;
+## Features to be Implemented in the Future:
+
+These were not implemented due to a shortage of invested time and prioritization of other functionalities:
+
+* Docker that runs all microservices together.
 * ApiGateway;
-* Segurança.
+* Security.
+
 
 
 
