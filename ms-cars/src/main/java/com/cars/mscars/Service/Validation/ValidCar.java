@@ -2,7 +2,8 @@ package com.cars.mscars.Service.Validation;
 
 import com.cars.mscars.DTO.CarsDTORequest;
 import com.cars.mscars.Entity.Cars;
-import com.cars.mscars.Service.Exceptions.AlreadyRegisteredException;
+import com.cars.mscars.Service.Exceptions.AlreadyRegisteredExceptionCar;
+import com.cars.mscars.Service.Exceptions.AlreadyRegisteredExceptionPilot;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,10 +16,10 @@ public class ValidCar {
             if (car.getBrand().equals(carRequest.getBrand())
                     && car.getModel().equals(carRequest.getModel())
                     && car.getYear().equals(carRequest.getYear())) {
-                throw new AlreadyRegisteredException("Car");
+                throw new AlreadyRegisteredExceptionCar();
             }
             if (car.getPilot().equals(carRequest.getPilot())) {
-                throw new AlreadyRegisteredException("Pilot");
+                throw new AlreadyRegisteredExceptionPilot();
             }
         }
     }

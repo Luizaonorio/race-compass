@@ -4,8 +4,9 @@ import com.cars.mscars.DTO.CarsDTORequest;
 import com.cars.mscars.DTO.CarsDTOResponse;
 import com.cars.mscars.Entity.Cars;
 import com.cars.mscars.Repositoty.CarsRepository;
-import com.cars.mscars.Service.Exceptions.AlreadyRegisteredException;
+import com.cars.mscars.Service.Exceptions.AlreadyRegisteredExceptionCar;
 import com.cars.mscars.Service.Exceptions.CarNotFoundException;
+import com.cars.mscars.Service.Exceptions.AlreadyRegisteredExceptionPilot;
 import com.cars.mscars.Utils.JsonUtils;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,6 +39,7 @@ class CarsServiceTest {
 
     private static final String CARSDTO = "Payload/CarDTORequest.json";
     private static final String CARS = "Payload/Car.json";
+
 
     @Test
     void findCarById() throws IOException {
@@ -83,13 +85,23 @@ class CarsServiceTest {
     }
 
     @Test
-    void validateEqualsCarsAndPilot_CreateCar_ERROR_AlreadyRegisteredException() throws IOException {
+    void validateEqualsCarsAndPilot_CreateCar_ERROR_AlreadyRegisteredExceptionCar() throws IOException {
         CarsDTORequest carsDTORequest = JsonUtils.getObjectFromFile(CARSDTO, CarsDTORequest.class);
         Cars car = JsonUtils.getObjectFromFile(CARS, Cars.class);
 
         when(carsRepository.findAll()).thenReturn(List.of(car));
 
-        assertThrows(AlreadyRegisteredException.class, () -> carsService.createCar(carsDTORequest));
+        assertThrows(AlreadyRegisteredExceptionCar.class, () -> carsService.createCar(carsDTORequest));
+    }
+
+    @Test
+    void validateEqualsCarsAndPilot_CreateCar_ERROR_AlreadyRegisteredExceptionPilot() throws IOException {
+        CarsDTORequest carsDTORequest = JsonUtils.getObjectFromFile(CARSDTO, CarsDTORequest.class);
+        Cars car = JsonUtils.getObjectFromFile(CARS, Cars.class);
+        carsDTORequest.setModel("newModel");
+        when(carsRepository.findAll()).thenReturn(List.of(car));
+
+        assertThrows(AlreadyRegisteredExceptionPilot.class, () -> carsService.createCar(carsDTORequest));
     }
 
     @Test
