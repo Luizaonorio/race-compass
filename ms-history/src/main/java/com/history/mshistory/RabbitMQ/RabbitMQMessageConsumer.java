@@ -2,7 +2,7 @@ package com.history.mshistory.RabbitMQ;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.history.mshistory.History.Service.HistoryService;
+import com.history.mshistory.Service.HistoryService;
 import com.history.mshistory.Model.RaceConversion;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;

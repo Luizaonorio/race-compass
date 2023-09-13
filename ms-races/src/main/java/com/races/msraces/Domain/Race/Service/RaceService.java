@@ -13,30 +13,19 @@ import com.races.msraces.Domain.Track.Entity.Track;
 import com.races.msraces.Model.CarsConversion;
 import com.races.msraces.RabbitMQ.RabbitMQMessageProducer;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class RaceService {
 
-    @Autowired
-    private RaceRepository raceRepository;
-
-    @Autowired
-    private Cars cars;
-
-    @Autowired
-    private AggregationRanceAndTrack aggregationRanceAndTrack;
-
-    @Autowired
-    private ModelMapper mapper;
-
+    private final RaceRepository raceRepository;
+    private final Cars cars;
+    private final AggregationRanceAndTrack aggregationRanceAndTrack;
+    private final ModelMapper mapper;
     private final RabbitMQMessageProducer messageProducer;
 
 
@@ -62,6 +51,7 @@ public class RaceService {
 
         Race raceSaveEntity = raceRepository.save(raceConversion);
         RaceDTOResponse raceResponse = mapper.map(raceSaveEntity, RaceDTOResponse.class);
+
         messageProducer.publish(raceConversion);
         return raceResponse;
     }

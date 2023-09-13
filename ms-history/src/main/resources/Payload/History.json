@@ -1,5 +1,136 @@
 {
-  "id": "2",
-  "name": "Circuito de Monza",
-  "country": "Itália"
+  "id": "6500bb9526ef9b24a0812c47",
+  "date": "2023-09-12",
+  "race": {
+    "id": "6500bb9526ef9b24a0812c46",
+    "name": "String",
+    "date": "2002-09-09",
+    "track": {
+      "id": "64ffbff2104fb4299c2c0f0d",
+      "name": "String",
+      "country": "String"
+    },
+    "carsList": [
+      {
+        "id": "64ffbf68ff4f9c7c8c9509fd",
+        "position": 1,
+        "brand": "Ezequiel",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Ezequiel",
+          "age": 54
+        },
+        "velocity": 107,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbfc9ff4f9c7c8c950a03",
+        "position": 2,
+        "brand": "Sidnei",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Sidnei",
+          "age": 54
+        },
+        "velocity": 121,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbfb4ff4f9c7c8c950a01",
+        "position": 3,
+        "brand": "gabi",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "gabi",
+          "age": 54
+        },
+        "velocity": 113,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbf86ff4f9c7c8c9509ff",
+        "position": 4,
+        "brand": "João",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "João",
+          "age": 54
+        },
+        "velocity": 111,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbfd7ff4f9c7c8c950a04",
+        "position": 5,
+        "brand": "Daniela",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Daniela",
+          "age": 54
+        },
+        "velocity": 163,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbf5dff4f9c7c8c9509fc",
+        "position": 6,
+        "brand": "Juliana",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Juliana",
+          "age": 54
+        },
+        "velocity": 129,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbf90ff4f9c7c8c950a00",
+        "position": 7,
+        "brand": "Gabriel",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Gabriel",
+          "age": 54
+        },
+        "velocity": 158,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbfbeff4f9c7c8c950a02",
+        "position": 8,
+        "brand": "Vivian",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Vivian",
+          "age": 54
+        },
+        "velocity": 168,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbf7aff4f9c7c8c9509fe",
+        "position": 9,
+        "brand": "Emaueli",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Emanueli",
+          "age": 54
+        },
+        "velocity": 122,
+        "year": "2000"
+      },
+      {
+        "id": "64ffbf44ff4f9c7c8c9509fb",
+        "position": 10,
+        "brand": "Amendoa",
+        "model": "Amendoa",
+        "pilot": {
+          "name": "Amendoa",
+          "age": 54
+        },
+        "velocity": 136,
+        "year": "2000"
+      }
+    ]
+  }
 }
