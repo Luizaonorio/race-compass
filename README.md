@@ -9,10 +9,11 @@ O Projeto se trata de uma simulação de corrida utilizando microsserviços com 
 * Java 17
 * Spring Boot 3.1.3
 * MongoDB
-* Courvege
+* Coverage
 * OpenFeign
 * RabbitMQ
 * Docker
+* Swagger
 
 
 &nbsp;
@@ -109,21 +110,17 @@ ms-history:
 &nbsp;
 
 
-## Requisitos:
-
-* Documentação da API; favor especificar a abordagem escolhida.
-* Uso do banco MongoDB em um ou mais serviços.
-* Uso do OpenFeign.
-* Uso do RabbitMQ.
-
 &nbsp;
 
+## Documentação
 
-## Lógica Implementada:
+
+### Lógica Implementada:
 
 Segui a escalada de desenvolvimento pela seguinte ordem: 
 
-![image](https://github.com/Luizaonorio/race-compass/assets/102754689/70ea4444-3c05-4eb4-acbd-c857a2c010e1)
+![image](https://github.com/Luizaonorio/race-compass/assets/102754689/a8a62d25-0b1c-4078-92ad-b2f0c6cacf36)
+
 
 &nbsp;
 
@@ -131,9 +128,9 @@ Pois, segundo os requisitos, podemos perceber que a dependência que um tem pelo
 
 ! Todos os microsserviços foram implementados com MongoDB.
 
-## Funcionalidades:
+### Funcionalidades:
 
-### MS-CARS
+#### MS-CARS
 
 Conta com apenas um CRUD completo. Portanto, foi definido que o objeto piloto deveria estar dentro de Car. Seguindo o exemplo:
 ```json
@@ -153,7 +150,7 @@ Também, segue com as solicitações de validação de carro ou piloto já exist
 
 &nbsp;
 
-### MS-RACES
+#### MS-RACES
 
 Este microsserviço conta com duas entidades, a Track que seria o local que a corrida deve acontecer, cujo, deverá ter o seguinte JSON como exemplo:
 ```json
@@ -182,7 +179,7 @@ Os carros consumidos aleatoriamente são desfrutados do método rafflingOffCars 
 
 &nbsp;
 
-### MS-HISTORY
+#### MS-HISTORY
 
 Apresenta apenas metodos de encontrar history por id ou todas as historys já salvas (findById e findAll), já que, ela apenas consumirá os resultados das corridas de ms-races e salvará no seu banco de dados.
 
@@ -191,7 +188,7 @@ Segue a solicitação de incluir data atual em que o registro foi inserido no ba
 
 &nbsp;
 
-## Segurança e Qualidade:
+### Segurança e Qualidade:
 
 #### Testes contam com cobertura de 63%
 ![image](https://github.com/Luizaonorio/race-compass/assets/102754689/a9befece-9696-4438-8bcc-1a7b8868dfad)
@@ -218,7 +215,7 @@ Ferramenta Coverage foi escolhida para essa análise da pocentagem dos testes.
 
 &nbsp;
 
-## Estrutura de Código:
+### Estrutura de Código:
 #### A estrutura de branch, segue o seguinte padrão:
 No início do projeto foram utilizadas as branches fixas "main" e "dev", seguindo o padrão para novas features de dev/(microsserviço).
 Após a deleção indevida e acidental da branch "dev", o padrão de branches foi alterado de "dev" para "develop" e novas features mudaram para developed/(microsserviço)
@@ -229,6 +226,23 @@ prefixo(microsserviço): O que foi feito no commit [issue]
 
 ##### Exemplo:
 feat(ms-cars): Add CRUD methods [#1]
+
+&nbsp;
+
+### Documentação da API
+
+Para a documentação da API a ferramenta Swagger foi utilizada, você pode acessar os microsserviços pelas seguintes URLs:
+
+&nbsp;
+
+#### MS-Cars
+http://localhost:8088/swagger-ui/index.html#/
+
+#### MS-Races
+http://localhost:8088/swagger-ui/index.html#/
+
+#### MS-History
+http://localhost:8089/swagger-ui/index.html#/
 
 &nbsp;
 
